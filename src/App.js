@@ -11,31 +11,31 @@ import leaf from './images/leaf.jpg';
 class App extends Component {
   constructor(props){
     super(props);
-    this.images = [
+    this.state = {images: [
       {image: ball, alt: 'ball'},
       {image: butterflies, alt: 'butterflies'},
       {image: city, alt: 'city'},
       {image: flower, alt: 'flower'},
       {image: leaf, alt: 'leaf'}
-    ];
-    this.activeImgCount = 0;
-    this.prevImgCount = this.images.length - 1;
-    this.nextImgCount = 1;
-    this.state = {prevImage: this.images[this.prevImgCount], image: this.images[this.activeImgCount], nextImage: this.images[this.nextImgCount]}
+    ], carouselIndex: 0}
     this.onCarouselChange = this.onCarouselChange.bind(this);
+    this.onIndicatorClick = this.onIndicatorClick.bind(this);
   }
 
   onCarouselChange(e){
-    this.activeImgCount = this.activeImgCount >= this.images.length - 1 ? 0 : this.activeImgCount + 1;
-    this.prevImgCount = this.prevImgCount >= this.images.length - 1 ? 0 : this.prevImgCount + 1;
-    this.nextImgCount = this.nextImgCount >= this.images.length - 1 ? 0 : this.nextImgCount + 1;
-    this.setState({prevImage: this.images[this.prevImgCount], image: this.images[this.activeImgCount], nextImage: this.images[this.nextImgCount]})
+    let newIndex = this.state.carouselIndex >= this.state.images.length - 1 ? 0 : this.state.carouselIndex + 1;
+    this.setState({carouselIndex: newIndex});
+  }
+  onIndicatorClick(e){
+    this.setState({carouselIndex: e.target.value})
+    console.log(e.target.value);
+    console.log('ho');
   }
 
   render() {
     return (
       <div className="App">
-        <Carousel prevImage={this.state.prevImage} activeImage={this.state.image} nextImage={this.state.nextImage} onCarouselChange={this.onCarouselChange}/>
+        <Carousel onIndicatorClick={this.onIndicatorClick} imagesLength={this.state.images.length} carouselIndex={this.state.carouselIndex} images={this.state.images} onCarouselChange={this.onCarouselChange}/>
       </div>
     );
   }

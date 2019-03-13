@@ -1,14 +1,12 @@
 import React from 'react';
 import './Carousel.css'
-
-
+import Image from './Image'
+import Indicator from './Indicator';
 
 class Carousel extends React.Component {
   constructor(props){
     super(props);
-    this.prevRef = React.createRef();
     this.activeRef = React.createRef();
-    this.nextRef = React.createRef();
   }
   componentDidMount(){
     this.carouselInterval = setInterval(() => {
@@ -21,9 +19,8 @@ class Carousel extends React.Component {
   render(){
     return(
       <div className='carousel'>
-        <img ref={this.prevRef} className='carousel__prev-img' src={this.props.prevImage.image} alt={this.props.prevImage.alt}></img>
-        <img ref={this.activeRef} className='carousel__active-img' src={this.props.activeImage.image} alt={this.props.activeImage.alt}></img>
-        <img ref={this.nextRef} className='carousel__next-img' src={this.props.nextImage.image} alt={this.props.nextImage.alt}></img>
+        <Image images={this.props.images} carouselIndex={this.props.carouselIndex}></Image>
+        <Indicator onIndicatorClick={this.props.onIndicatorClick} imagesLength={this.props.imagesLength} carouselIndex={this.props.carouselIndex}></Indicator>
       </div>
     )
   }
