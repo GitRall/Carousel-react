@@ -26,10 +26,10 @@ class App extends Component {
     let newIndex = this.state.carouselIndex >= this.state.images.length - 1 ? 0 : this.state.carouselIndex + 1;
     this.setState({carouselIndex: newIndex});
   }
-  onIndicatorClick(e){
-    this.setState({carouselIndex: e.target.value})
-    console.log(e.target.value);
-    console.log('ho');
+  onIndicatorClick(target){
+    let value = target.value;
+    value = parseInt(value);
+    this.setState({carouselIndex: value})
   }
 
   render() {
