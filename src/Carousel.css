@@ -36,3 +36,38 @@
 .carousel__indicator-active{
   opacity: 0.8;
 }
+.carousel__next-btn{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  color: #FFF;
+  background: none;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+  margin-right: 10px;
+}
+.carousel__next-btn:hover{
+  opacity: 1;
+}
+.carousel__prev-btn{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  color: #FFF;
+  background: none;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+  margin-left: 10px;
+}
+.carousel__prev-btn:hover{
+  opacity: 1;
+}
+.carousel__icon{
+  font-size: 36px;
+}

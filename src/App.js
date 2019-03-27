@@ -18,11 +18,15 @@ class App extends Component {
       {image: flower, alt: 'flower'},
       {image: leaf, alt: 'leaf'}
     ], carouselIndex: 0}
-    this.onCarouselChange = this.onCarouselChange.bind(this);
+    this.onNext = this.onNext.bind(this);
     this.onIndicatorClick = this.onIndicatorClick.bind(this);
+    this.onPrev = this.onPrev.bind(this);
   }
-
-  onCarouselChange(e){
+  onPrev(e){
+    let newIndex = this.state.carouselIndex <= 0 ? this.state.images.length - 1 : this.state.carouselIndex - 1;
+    this.setState({carouselIndex: newIndex});
+  }
+  onNext(e){
     let newIndex = this.state.carouselIndex >= this.state.images.length - 1 ? 0 : this.state.carouselIndex + 1;
     this.setState({carouselIndex: newIndex});
   }
@@ -35,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Carousel onIndicatorClick={this.onIndicatorClick} imagesLength={this.state.images.length} carouselIndex={this.state.carouselIndex} images={this.state.images} onCarouselChange={this.onCarouselChange}/>
+        <Carousel onIndicatorClick={this.onIndicatorClick} onPrev={this.onPrev} imagesLength={this.state.images.length} carouselIndex={this.state.carouselIndex} images={this.state.images} onNext={this.onNext}/>
       </div>
     );
   }
